@@ -25,7 +25,6 @@ public class AddTaskActivity extends AppCompatActivity {
 
         dataBaseHelper = new DataBaseHelper(this);
 
-        // Obtém os dados da tarefa para edição, se existirem
         if (getIntent().hasExtra("id")) {
             taskId = getIntent().getIntExtra("id", -1);
             String title = getIntent().getStringExtra("title");
@@ -43,11 +42,11 @@ public class AddTaskActivity extends AppCompatActivity {
 
                 if (!title.isEmpty() && !description.isEmpty()) {
                     if (taskId == -1) {
-                        // Adicionar nova tarefa
+
                         dataBaseHelper.addTask(new Task(title, description));
                         Toast.makeText(AddTaskActivity.this, "Task added", Toast.LENGTH_SHORT).show();
                     } else {
-                        // Editar tarefa existente
+
                         dataBaseHelper.updateTask(new Task(taskId, title, description));
                         Toast.makeText(AddTaskActivity.this, "Task updated", Toast.LENGTH_SHORT).show();
                     }
